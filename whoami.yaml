@@ -12,6 +12,6 @@ spec:
     spec:
       containers:
       - name: whoami
-        image: demoContainer/whoami
+        image: democontenidors/whoami:1.0
         ports:
           - containerPort: 5000
