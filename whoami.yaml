@@ -1,8 +1,8 @@
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: whoami
+  namespace: whoamins 
 spec:
   replicas: 3
   template:
@@ -15,3 +15,20 @@ spec:
         image: democontenidors/whoami:1.0
         ports:
           - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoamiservice 
+  namespace: whoamins 
+  labels:
+    app: whoami
+spec:
+  type: NodePort
+  selector:
+    app: whoami
+  ports:
+  - port: 80
+    targetPort: 5000
+  externalIPs: 
+    - 192.168.99.100
