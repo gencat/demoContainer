@@ -1,0 +1,17 @@
+kubectl create namespace wordpress
+
+SECRETS
+kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD --namespace=wordpress
+
+kubectl create -f mysql-deployment.yaml --namespace=wordpress
+
+Comprovem que s’ha creat dinàmicament:
+kubectl get pvc --namespace=wordpress
+
+Despleguem WORDPRESS:
+kubectl create -f wordpress-deployment.yaml --namespace=wordpress
+
+Comprovem que el PODs estan desplegats:
+kubectl get pods --namespace=wordpress
+
+Minikube service wordpress --namespace=wordpress
